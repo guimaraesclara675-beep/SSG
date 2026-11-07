@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   if (lead.nome.length < 2 || !lead.empresa || !/^\S+@\S+\.\S+$/.test(lead.email) || !lead.consentimento) {
     return NextResponse.json({ ok: false, erro: 'Preencha nome, empresa, e-mail e a autorização de uso dos dados.' }, { status: 400 });
   }
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from('leads').insert(lead);
   if (error) return NextResponse.json({ ok: false, erro: 'Não foi possível registrar o pedido.' }, { status: 500 });
   return NextResponse.json({ ok: true, protocolo: lead.protocolo });

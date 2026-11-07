@@ -7,7 +7,8 @@ const T: Record<string, [string, string]> = {
   erro: ['Não conseguimos abrir o pagamento agora', 'Tente de novo em alguns minutos ou fale com a SG pelo WhatsApp.']
 };
 
-export default function Obrigado({ searchParams }: { searchParams: { status?: string } }) {
+export default async function Obrigado(props: { searchParams: Promise<{ status?: string }> }) {
+  const searchParams = await props.searchParams;
   const [titulo, texto] = T[searchParams.status || 'ok'] || T.ok;
   return (
     <div className="auth" style={{ gridTemplateColumns: '1fr' }}>

@@ -7,7 +7,8 @@ import { abrirChamado } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Suporte({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Suporte(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase, org } = await requireClient();
   const { data: tk } = await supabase.from('tickets').select('*').eq('org_id', org.id).order('created_at', { ascending: false });
   return (

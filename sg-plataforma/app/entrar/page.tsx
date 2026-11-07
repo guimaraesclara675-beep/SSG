@@ -2,7 +2,10 @@ import { LoginForm } from './LoginForm';
 
 export const dynamic = 'force-dynamic';
 
-export default function Entrar({ searchParams }: { searchParams: { modo?: string; volta?: string; erro?: string } }) {
+export default async function Entrar(
+  props: { searchParams: Promise<{ modo?: string; volta?: string; erro?: string }> }
+) {
+  const searchParams = await props.searchParams;
   const modo = searchParams.modo === 'criar' ? 'criar' : 'entrar';
   return (
     <div className="auth">

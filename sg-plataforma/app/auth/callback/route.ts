@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const volta = searchParams.get('volta') || '/app';
   const destino = volta.startsWith('/') && !volta.startsWith('//') ? volta : '/app';
   if (code) {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) return NextResponse.redirect(`${origin}${destino}`);
   }

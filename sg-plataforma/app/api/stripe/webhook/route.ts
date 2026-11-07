@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type Stripe from 'stripe';
 import { createServiceClient } from '@/lib/supabase/server';
-import { stripe } from '@/lib/stripe';
+import { cryptoProvider, stripe } from '@/lib/stripe';
 
 /** A Stripe avisa aqui quando a fatura é paga. A assinatura do aviso é verificada antes de dar baixa. */
 export async function POST(req: Request) {
@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   const sig = req.headers.get('stripe-signature');
   if (!secret || !sig) return NextResponse.json({ erro: 'não autorizado' }, { status: 400 });
   let ev: Stripe.Event;
-  try { ev = stripe().webhooks.constructEvent(await req.text(), sig, secret); }
+  try { ev = await stripe().webhooks.constructEventAsync(await req.text(), sig, secret, undefined, cryptoProvider); }
   catch { return NextResponse.json({ erro: 'assinatura inválida' }, { status: 400 }); }
 
   if (ev.type === 'checkout.session.completed' || ev.type === 'checkout.session.async_payment_succeeded' || ev.type === 'checkout.session.async_payment_failed') {

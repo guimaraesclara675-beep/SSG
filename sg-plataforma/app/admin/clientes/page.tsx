@@ -9,7 +9,8 @@ import { criarCliente } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Clientes({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Clientes(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase } = await requireAdmin();
   const { data: orgs } = await supabase.from('organizations').select('*, org_modules(status)').order('created_at', { ascending: false });
   return (

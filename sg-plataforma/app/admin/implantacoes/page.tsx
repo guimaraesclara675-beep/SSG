@@ -8,7 +8,8 @@ export const dynamic = 'force-dynamic';
 const COLS = ['Aguardando', 'Diagnóstico', 'Configuração', 'Testes', 'No ar'];
 const colOf = (o: { status: string; etapa: number }) => (o.status === 'aguardando' ? 0 : o.status === 'ativo' ? 4 : o.status === 'suspenso' ? -1 : Math.min(o.etapa, 2) + 1);
 
-export default async function Implantacoes({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Implantacoes(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase } = await requireAdmin();
   const { data: orgs } = await supabase.from('organizations').select('id,nome,plano,status,etapa').order('created_at');
   return (

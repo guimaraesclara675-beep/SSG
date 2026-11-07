@@ -5,7 +5,8 @@ import { salvarMarca } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Marca({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Marca(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { org, perfil } = await requireClient();
   const pode = perfil === 'Administrador';
   return (

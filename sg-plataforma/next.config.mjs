@@ -2,7 +2,8 @@
 const nextConfig = {
   async rewrites() {
     // A vitrine (catálogo, demonstrações, pacotes) é a página inicial do site.
-    return { beforeFiles: [{ source: '/', destination: '/vitrine.html' }] };
+    // No Cloudflare, o public/index.html já é servido direto em "/"; esta regra vale para outros servidores.
+    return { beforeFiles: [{ source: '/', destination: '/index.html' }] };
   },
   async headers() {
     return [{

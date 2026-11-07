@@ -2,7 +2,7 @@ import { Shell } from '@/components/Shell';
 import { createClient } from '@/lib/supabase/server';
 
 export async function AdminShell({ current, title, children }: { current: string; title: string; children: React.ReactNode }) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const [{ count: novos }, { count: abertos }, { count: aguardando }] = await Promise.all([
     supabase.from('leads').select('id', { count: 'exact', head: true }).eq('status', 'novo'),
     supabase.from('tickets').select('id', { count: 'exact', head: true }).eq('status', 'aberto'),

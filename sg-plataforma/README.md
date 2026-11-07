@@ -2,7 +2,7 @@
 
 Site (vitrine com catálogo e demonstrações), área do cliente, painel da administradora e IA de ajustes.
 
-- **Vitrine**: `/` (arquivo `public/vitrine.html`). Pedidos de orçamento vão para o banco e aparecem em **Painel › Pedidos**.
+- **Vitrine**: `/` (arquivo `public/index.html`). Pedidos de orçamento vão para o banco e aparecem em **Painel › Pedidos**.
 - **Área do cliente**: `/app` (início, módulos, ajustes com IA, faturas, suporte, equipe, marca).
 - **Painel da administradora**: `/admin` (visão geral, clientes, pedidos, implantações, financeiro, chamados).
 - **Login**: código por e-mail ou Google. Sem senha.
@@ -19,17 +19,23 @@ Site (vitrine com catálogo e demonstrações), área do cliente, painel da admi
 5. (Opcional) Login com Google: **Authentication › Providers › Google**, siga o passo a passo do Supabase.
 6. Em **Project Settings › API**, copie a *Project URL*, a chave *anon* e a chave *service_role*.
 
-### 2. Site (Vercel)
+### 2. Site (Cloudflare Workers, plano gratuito)
 1. Suba esta pasta para um repositório no GitHub.
-2. Em vercel.com, **Add New › Project**, escolha o repositório.
-3. Em **Environment Variables**, preencha as variáveis do arquivo `.env.example`:
-   - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
-   - `NEXT_PUBLIC_SITE_URL` (ex.: `https://app.sgengenharias.com`)
-   - `NEXT_PUBLIC_WHATSAPP=5511915471870`
-   - `ANTHROPIC_API_KEY` (para a IA de ajustes; crie em console.anthropic.com) e, se quiser, `ANTHROPIC_MODEL`
-   - `STRIPE_SECRET_KEY` e `STRIPE_WEBHOOK_SECRET` (pagamentos; veja a seção da Stripe)
+2. No Cloudflare, **Workers & Pages › Create › Import a repository**, conecte o GitHub e escolha o repositório.
+3. Configure:
+   - **Project name:** `sg-plataforma` (precisa ser igual ao `name` do `wrangler.jsonc`)
+   - **Build command:** `npx opennextjs-cloudflare build`
+   - **Deploy command:** `npx wrangler deploy`
+   - **Path / Root directory:** a pasta onde está o `package.json` (ex.: `sg-plataforma`)
+   - **Build variables** (usadas na montagem do site):
+     `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SITE_URL` (ex.: `https://app.sgengenharias.com`), `NEXT_PUBLIC_WHATSAPP=5511915471870`
 4. Clique em **Deploy**.
-5. No Supabase, em **Authentication › URL Configuration**, coloque o endereço do site em *Site URL* e adicione `https://SEU-SITE/auth/callback` em *Redirect URLs*.
+5. Depois da primeira publicação, em **Settings › Variables and Secrets** do Worker, adicione como **Secret**:
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - quando for usar: `ANTHROPIC_API_KEY` (IA de ajustes), `STRIPE_SECRET_KEY` e `STRIPE_WEBHOOK_SECRET` (pagamentos)
+6. No Supabase, em **Authentication › URL Configuration**, coloque o endereço do site em *Site URL* e adicione `https://SEU-SITE/auth/callback` em *Redirect URLs*.
+
+Limites do plano gratuito do Workers: 100 mil acessos por dia e pouco tempo de processamento por acesso. Se o painel do Cloudflare mostrar erros de limite de CPU, o plano Workers Paid (US$ 5/mês) resolve.
 
 ### 3. Virar administradora
 1. Abra o site, clique em **Criar conta** e entre com o seu e-mail.
@@ -40,7 +46,7 @@ Site (vitrine com catálogo e demonstrações), área do cliente, painel da admi
 3. Acesse `/admin`.
 
 ### 4. Endereço próprio
-Na Vercel, **Settings › Domains**, adicione `app.sgengenharias.com` e crie o registro CNAME que ela indicar no seu provedor de domínio.
+No Worker, **Settings › Domains & Routes › Add › Custom domain**, digite `app.sgengenharias.com`. Se o domínio já estiver no Cloudflare, o registro de DNS é criado sozinho.
 
 ## Aprovação de cadastro
 Quem cria conta pelo site entra numa tela de **Cadastro em análise** e não acessa nada até você aprovar. No painel, o cadastro aparece em **Visão geral** e em **Clientes** como *Aguardando ativação*; na ficha, clique em **Aprovar cadastro**. Clientes que você mesma cria (ou converte de um pedido) já entram aprovados.
@@ -77,7 +83,7 @@ Cada fatura ganha um **link de pagamento permanente** (`/pagar/...`). Quando o c
 
 1. Crie a conta em stripe.com com o **CNPJ da SG** (o dinheiro cai na conta bancária cadastrada lá).
 2. Em **Configurações › Formas de pagamento**, ative **Pix**, **Cartões** e **Boleto** (o Pix depende de aprovação da Stripe para a sua conta).
-3. Em **Desenvolvedores › Chaves de API**, copie a chave secreta (`sk_live_...`) para `STRIPE_SECRET_KEY` na Vercel.
+3. Em **Desenvolvedores › Chaves de API**, copie a chave secreta (`sk_live_...`) para o secret `STRIPE_SECRET_KEY` do Worker.
 4. Em **Desenvolvedores › Webhooks**, adicione o endpoint `https://SEU-SITE/api/stripe/webhook` com os eventos `checkout.session.completed`, `checkout.session.async_payment_succeeded` e `checkout.session.async_payment_failed`. Copie o *segredo de assinatura* (`whsec_...`) para `STRIPE_WEBHOOK_SECRET`.
 5. Teste primeiro com as chaves de teste (`sk_test_...`) e um cartão de teste da Stripe; depois troque pelas chaves reais.
 

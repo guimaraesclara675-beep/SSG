@@ -5,7 +5,8 @@ import { criarEmpresa } from './actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function BemVindo({ searchParams }: { searchParams: { modulos?: string; erro?: string } }) {
+export default async function BemVindo(props: { searchParams: Promise<{ modulos?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase, user, profile } = await getSession();
   if (!user) redirect('/entrar?modo=criar');
   const { data: m } = await supabase.from('memberships').select('org_id').eq('user_id', user.id).limit(1).maybeSingle();

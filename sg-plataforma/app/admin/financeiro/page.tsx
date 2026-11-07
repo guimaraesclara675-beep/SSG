@@ -9,7 +9,8 @@ import { atualizarAtrasos, gerarMensalidades, marcarPaga } from '../actions';
 export const dynamic = 'force-dynamic';
 const ORD: Record<string, number> = { atr: 0, pend: 1, pago: 2 };
 
-export default async function Financeiro({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Financeiro(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase } = await requireAdmin();
   const { data: inv } = await supabase.from('invoices').select('*, organizations(nome)').order('vencimento', { ascending: false }).limit(500);
   const I = (inv || []).slice().sort((a: any, b: any) => ORD[a.status] - ORD[b.status]);

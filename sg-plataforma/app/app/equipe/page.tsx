@@ -5,7 +5,8 @@ import { convidarPessoa } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Equipe({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Equipe(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase, org, perfil } = await requireClient();
   const { data: ms } = await supabase.from('memberships').select('user_id,perfil,profiles:user_id(nome,email)').eq('org_id', org.id);
   return (

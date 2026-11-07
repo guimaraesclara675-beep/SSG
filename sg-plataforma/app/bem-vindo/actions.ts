@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 
 export async function criarEmpresa(form: FormData) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const nome = String(form.get('nome') || '').trim();
   const modulos = String(form.get('modulos') || '').split(',').filter(Boolean);
   const { error } = await supabase.rpc('create_organization', {

@@ -13,7 +13,11 @@ import { aprovarCadastro, adicionarItem, adicionarModulos, convidarParaCliente, 
 
 export const dynamic = 'force-dynamic';
 
-export default async function Cliente({ params, searchParams }: { params: { id: string }; searchParams: { ok?: string; erro?: string } }) {
+export default async function Cliente(
+  props: { params: Promise<{ id: string }>; searchParams: Promise<{ ok?: string; erro?: string }> }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const { supabase } = await requireAdmin();
   const { data: o } = await supabase.from('organizations').select('*').eq('id', params.id).maybeSingle();
   if (!o) notFound();

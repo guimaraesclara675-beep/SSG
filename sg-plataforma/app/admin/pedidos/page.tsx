@@ -7,7 +7,8 @@ import { criarCliente, statusPedido } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Pedidos({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Pedidos(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase } = await requireAdmin();
   const { data: leads } = await supabase.from('leads').select('*').order('created_at', { ascending: false }).limit(200);
   return (

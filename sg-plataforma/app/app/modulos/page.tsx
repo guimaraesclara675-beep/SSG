@@ -7,7 +7,8 @@ import { solicitarModulo } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Modulos({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Modulos(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase, org } = await requireClient();
   const [{ data: mods }, { data: cat }] = await Promise.all([
     supabase.from('org_modules').select('module_id,status,modules(nome,descricao)').eq('org_id', org.id).order('module_id'),

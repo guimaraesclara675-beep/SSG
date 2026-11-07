@@ -8,7 +8,8 @@ import { responderChamado } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Chamados({ searchParams }: { searchParams: { ok?: string; erro?: string } }) {
+export default async function Chamados(props: { searchParams: Promise<{ ok?: string; erro?: string }> }) {
+  const searchParams = await props.searchParams;
   const { supabase } = await requireAdmin();
   const { data: tk } = await supabase.from('tickets').select('*, organizations(nome)').order('created_at', { ascending: false }).limit(200);
   const T = (tk || []).slice().sort((a: any, b: any) => (a.status === 'aberto' ? 0 : 1) - (b.status === 'aberto' ? 0 : 1));

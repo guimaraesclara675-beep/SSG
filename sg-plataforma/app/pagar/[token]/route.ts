@@ -7,7 +7,8 @@ import { waLink } from '@/lib/format';
  * Link de pagamento da fatura. Cria a sessão de checkout da Stripe na hora do clique,
  * então o link enviado pelo WhatsApp nunca expira.
  */
-export async function GET(req: Request, { params }: { params: { token: string } }) {
+export async function GET(req: Request, props: { params: Promise<{ token: string }> }) {
+  const params = await props.params;
   const site = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
   if (!/^[0-9a-f-]{36}$/i.test(params.token)) return NextResponse.redirect(`${site}/`, 303);
   const svc = createServiceClient();
