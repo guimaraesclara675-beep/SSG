@@ -45,7 +45,7 @@ h1,h2,h3{font-family:Sora,system-ui,sans-serif;letter-spacing:-.01em}
 .btn-wa{background:#1E9E57;color:#fff}
 .btn-sm{padding:6px 11px;font-size:13px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.link{color:var(--accent);font-weight:600}
+.link{color:var(--accent);font-weight:600}.link:disabled{opacity:.55;cursor:default}
 .chip{display:inline-block;border-radius:999px;padding:1px 9px;font-size:12px;font-weight:600;white-space:nowrap}
 .chip-gold{background:var(--gold-soft);color:var(--gold)}.chip-blue{background:var(--surface2);color:var(--accent)}.chip-green{background:var(--ok-soft);color:var(--ok)}.chip-red{background:var(--bad-soft);color:var(--bad)}.chip-gray{background:var(--surface2);color:var(--muted)}
 .tbl{overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-radius:10px}
