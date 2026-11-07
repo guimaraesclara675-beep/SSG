@@ -23,12 +23,12 @@ Site (vitrine com catálogo e demonstrações), área do cliente, painel da admi
 1. Suba esta pasta para um repositório no GitHub.
 2. No Cloudflare, **Workers & Pages › Create › Import a repository**, conecte o GitHub e escolha o repositório.
 3. Configure:
-   - **Project name:** `sg-plataforma` (precisa ser igual ao `name` do `wrangler.jsonc`)
+   - **Project name:** `ssg` (precisa ser igual ao `name` do `wrangler.jsonc`)
    - **Build command:** `npx opennextjs-cloudflare build`
    - **Deploy command:** `npx wrangler deploy`
-   - **Path / Root directory:** a pasta onde está o `package.json` (ex.: `sg-plataforma`)
+   - **Path / Root directory:** `/` (o `package.json` fica na raiz do repositório)
    - **Build variables** (usadas na montagem do site):
-     `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SITE_URL` (ex.: `https://app.sgengenharias.com`), `NEXT_PUBLIC_WHATSAPP=5511915471870`
+     `NEXT_PUBLIC_SUPABASE_ANON_KEY` (os outros valores públicos já estão no arquivo `.env.production`)
 4. Clique em **Deploy**.
 5. Depois da primeira publicação, em **Settings › Variables and Secrets** do Worker, adicione como **Secret**:
    - `SUPABASE_SERVICE_ROLE_KEY`
