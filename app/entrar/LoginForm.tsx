@@ -44,7 +44,10 @@ export function LoginForm({ modo, volta }: { modo: 'entrar' | 'criar'; volta?: s
 
   async function verificar(e: React.FormEvent) {
     e.preventDefault(); setErro(''); setBusy(true);
-    const { error } = await supabase.auth.verifyOtp({ email, token: codigo.trim(), type: 'email' });
+    const token = codigo.trim();
+    // Conta nova recebe o código de confirmação de cadastro; conta existente, o de login.
+    let { error } = await supabase.auth.verifyOtp({ email, token, type: 'email' });
+    if (error) ({ error } = await supabase.auth.verifyOtp({ email, token, type: 'signup' }));
     setBusy(false);
     if (error) { setErro('Código incorreto ou expirado. Confira o e-mail e tente de novo.'); return; }
     router.replace(destino);
@@ -72,8 +75,8 @@ export function LoginForm({ modo, volta }: { modo: 'entrar' | 'criar'; volta?: s
         </form>
       ) : (
         <form onSubmit={verificar} className="flex flex-col gap-3">
-          <p className="text-sm muted">Enviamos um código de 6 dígitos para <b>{email}</b>.</p>
-          <div className="fld"><label htmlFor="codigo">Código</label><input id="codigo" inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={codigo} onChange={e => setCodigo(e.target.value)} /></div>
+          <p className="text-sm muted">Enviamos um código de acesso para <b>{email}</b>.</p>
+          <div className="fld"><label htmlFor="codigo">Código</label><input id="codigo" inputMode="numeric" autoComplete="one-time-code" maxLength={10} value={codigo} onChange={e => setCodigo(e.target.value)} /></div>
           {erro ? <p className="alert alert-err">{erro}</p> : null}
           <button className="btn btn-primary" disabled={busy || codigo.length < 6}>{busy ? 'Entrando…' : 'Entrar'}</button>
           <button type="button" className="link text-sm" onClick={() => { setEtapa('email'); setCodigo(''); }}>Usar outro e-mail</button>
