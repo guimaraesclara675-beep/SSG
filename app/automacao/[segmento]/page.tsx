@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segmento:
   const url = `${SITE.url}/automacao/${s.slug}`;
   return {
     title: `${s.titulo} | SG Engenharias`,
-    description: `${s.resumo} Automação sob medida para ${s.nome.toLowerCase()} em ${SITE.regiao}: WhatsApp, cobrança, agenda e relatórios.`,
+    description: `${s.resumo} Automação sob medida para ${s.nome.toLowerCase()} em todo o Brasil: WhatsApp, cobrança, agenda e relatórios.`,
     alternates: { canonical: url },
     openGraph: { title: s.titulo, description: s.resumo, url, siteName: SITE.nome, locale: 'pt_BR', type: 'website' }
   };

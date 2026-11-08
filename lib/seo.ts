@@ -9,7 +9,7 @@ export const SITE = {
   whatsapp: '5511915471870',
   whatsappFmt: '(11) 91547-1870',
   email: 'adm@sgengenharias.com',
-  regiao: 'Pernambuco e Paraíba'
+  regiao: 'todo o Brasil'
 };
 
 export type Modulo = { id: string; nome: string; desc: string };
@@ -521,8 +521,8 @@ export const FAQ: { p: string; r: string }[] = [
     r: 'A SG Engenharias cria automações sob medida para empresas: atendimento automático no WhatsApp, cobrança e lembretes de pagamento, CRM e funil de vendas, agendamentos, relatórios e rotinas administrativas. A SG automatiza mais de 500 tipos de empresas e processos, combinando as automações conforme o negócio.' },
   { p: 'Para que tipo de empresa a automação serve?',
     r: 'Para empresas de qualquer porte que repetem tarefas todos os dias. A SG automatiza mais de 500 tipos de empresas e processos. Temos soluções prontas para consórcios, imobiliárias, clínicas, engenharia e obras, lojas virtuais, restaurantes, escritórios jurídicos, contabilidade e escolas, e fazemos sob medida para outros ramos.' },
-  { p: 'Quais cidades a SG Engenharias atende?',
-    r: 'Atendemos empresas de Pernambuco e da Paraíba, como Recife, Cabo de Santo Agostinho, Jaboatão dos Guararapes, João Pessoa e Campina Grande. Como o atendimento e a implantação podem ser feitos pelo WhatsApp e por videochamada, atendemos todo o Brasil e também o exterior.' },
+  { p: 'Onde a SG Engenharias atende?',
+    r: 'Atendemos empresas de todo o Brasil e do exterior. A implantação é feita pelo WhatsApp e por videochamada, e quem preferir pode ser atendido presencialmente na nossa sala no Novo Mundo Empresarial, no Cabo de Santo Agostinho.' },
   { p: 'Dá para automatizar o WhatsApp da empresa?',
     r: 'Sim. O WhatsApp pode responder perguntas frequentes, fazer o primeiro atendimento, agendar, enviar lembretes e cobranças e passar a conversa para a pessoa certa da equipe. Também é possível usar um único número para mais de um negócio, separando as mensagens de cada um.' },
   { p: 'Quanto custa uma automação?',

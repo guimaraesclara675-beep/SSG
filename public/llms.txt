@@ -1,6 +1,6 @@
 # SG Engenharias
 
-> A SG Engenharias é uma empresa brasileira de automação de processos que automatiza mais de 500 tipos de empresas e processos: atendimento no WhatsApp, cobrança, CRM e vendas, agendamentos, relatórios e rotinas administrativas, implantados sob medida. Sede em sala privativa no Novo Mundo Empresarial (Cabo de Santo Agostinho, PE). Atende Recife, Pernambuco, Paraíba, todo o Brasil e o exterior, com atendimento presencial, por WhatsApp e por videochamada. Segunda a sábado, 08h às 21h.
+> A SG Engenharias é uma empresa brasileira de automação de processos que automatiza mais de 500 tipos de empresas e processos: atendimento no WhatsApp, cobrança, CRM e vendas, agendamentos, relatórios e rotinas administrativas, implantados sob medida. Sede em sala privativa no Novo Mundo Empresarial (Cabo de Santo Agostinho, PE). Atende todo o Brasil e o exterior, com atendimento presencial, por WhatsApp e por videochamada. Segunda a sábado, 08h às 21h.
 
 Contato: WhatsApp (11) 91547-1870 · adm@sgengenharias.com · https://sgengenharias.com
 
@@ -19,9 +19,9 @@ Contato: WhatsApp (11) 91547-1870 · adm@sgengenharias.com · https://sgengenhar
 - [Automação para escritórios de contabilidade](https://sgengenharias.com/automacao/contabilidade): Documentos dos clientes chegando sozinhos e fechamento do mês sem correria.
 - [Automação para escolas e cursos](https://sgengenharias.com/automacao/educacao): Matrícula online, mensalidade em dia e responsáveis sempre informados.
 
-## Onde atendemos
-- [Automação de processos para empresas em Recife (PE)](https://sgengenharias.com/automacao-empresas/recife)
-- [Automação de processos para empresas em Cabo de Santo Agostinho (PE)](https://sgengenharias.com/automacao-empresas/cabo-de-santo-agostinho)
-- [Automação de processos para empresas em Jaboatão dos Guararapes (PE)](https://sgengenharias.com/automacao-empresas/jaboatao-dos-guararapes)
-- [Automação de processos para empresas em João Pessoa (PB)](https://sgengenharias.com/automacao-empresas/joao-pessoa)
-- [Automação de processos para empresas em Campina Grande (PB)](https://sgengenharias.com/automacao-empresas/campina-grande)
+## Atendimento em todo o Brasil (algumas cidades)
+- [Automação de processos para empresas em Recife](https://sgengenharias.com/automacao-empresas/recife)
+- [Automação de processos para empresas em Cabo de Santo Agostinho](https://sgengenharias.com/automacao-empresas/cabo-de-santo-agostinho)
+- [Automação de processos para empresas em Jaboatão dos Guararapes](https://sgengenharias.com/automacao-empresas/jaboatao-dos-guararapes)
+- [Automação de processos para empresas em João Pessoa](https://sgengenharias.com/automacao-empresas/joao-pessoa)
+- [Automação de processos para empresas em Campina Grande](https://sgengenharias.com/automacao-empresas/campina-grande)

@@ -11,10 +11,10 @@ export async function generateMetadata({ params }: { params: Promise<{ cidade: s
   const c = CIDADES.find(x => x.slug === cidade);
   if (!c) return {};
   const url = `${SITE.url}/automacao-empresas/${c.slug}`;
-  const titulo = `Automação de processos para empresas em ${c.nome} (${c.uf})`;
+  const titulo = `Automação de processos para empresas em ${c.nome}`;
   return {
     title: `${titulo} | SG Engenharias`,
-    description: `Automação de WhatsApp, cobrança, CRM, agendamentos e rotinas administrativas para empresas de ${c.nome} - ${c.uf}. Soluções sob medida da SG Engenharias.`,
+    description: `Automação de WhatsApp, cobrança, CRM, agendamentos e rotinas administrativas para empresas de ${c.nome}. Soluções sob medida da SG Engenharias.`,
     alternates: { canonical: url },
     openGraph: { title: titulo, url, siteName: SITE.nome, locale: 'pt_BR', type: 'website' }
   };
@@ -34,7 +34,7 @@ export default async function CidadePage({ params }: { params: Promise<{ cidade:
       serviceType: 'Automação de processos empresariais',
       url,
       provider: { '@type': 'ProfessionalService', name: SITE.nome, url: SITE.url },
-      areaServed: { '@type': 'City', name: c.nome, containedInPlace: { '@type': 'State', name: c.estado } }
+      areaServed: { '@type': 'City', name: c.nome }
     },
     {
       '@context': 'https://schema.org',
@@ -50,7 +50,7 @@ export default async function CidadePage({ params }: { params: Promise<{ cidade:
     <PublicPage jsonLd={jsonLd}>
       <section className="pub-hero">
         <div className="pub-wrap">
-          <p className="pub-eyebrow">{c.nome} · {c.estado}</p>
+          <p className="pub-eyebrow">Automação empresarial em {c.nome}</p>
           <h1>Automação de processos para empresas em {c.nome}</h1>
           <p className="pub-lead">
             A SG Engenharias automatiza as tarefas repetitivas de empresas de {c.nome}: atendimento no WhatsApp,
