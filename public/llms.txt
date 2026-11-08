@@ -1,6 +1,6 @@
 # SG Engenharias
 
-> A SG Engenharias é uma empresa brasileira de automação de sistemas: transforma as rotinas complexas do dia a dia em processos que funcionam sozinhos, para mais de 500 tipos de empresas e processos, de locadoras de barcos, produtoras de vídeo e estúdios de gravação a BPO financeiro, leiloeiros, holdings familiares e prefeituras. Sede em sala privativa no Novo Mundo Empresarial (Cabo de Santo Agostinho, PE). Atende todo o Brasil e o exterior, com atendimento presencial, por WhatsApp e por videochamada. Segunda a sábado, 08h às 21h.
+> A SG Engenharias é uma empresa brasileira de automação de sistemas: transforma as rotinas complexas do dia a dia em processos que funcionam sozinhos, para mais de 500 tipos de empresas e processos, de locadoras de barcos, produtoras de vídeo e estúdios de gravação a BPO financeiro, leiloeiros, holdings familiares e prefeituras. Sede em sala privativa no Novo Mundo Empresarial (Cabo de Santo Agostinho, PE). Atende todo o Brasil (São Paulo, Pernambuco, Paraíba e outros estados) e o exterior, com atendimento presencial, por WhatsApp e por videochamada. Segunda a sábado, 08h às 21h.
 
 Contato: WhatsApp (11) 91547-1870 · adm@sgengenharias.com · https://sgengenharias.com
 
@@ -20,6 +20,7 @@ Contato: WhatsApp (11) 91547-1870 · adm@sgengenharias.com · https://sgengenhar
 - [Automação para escolas e cursos](https://sgengenharias.com/automacao/educacao): Matrícula online, mensalidade em dia e responsáveis sempre informados.
 
 ## Atendimento em todo o Brasil (algumas cidades)
+- [Automação de processos para empresas em São Paulo](https://sgengenharias.com/automacao-empresas/sao-paulo)
 - [Automação de processos para empresas em Recife](https://sgengenharias.com/automacao-empresas/recife)
 - [Automação de processos para empresas em Cabo de Santo Agostinho](https://sgengenharias.com/automacao-empresas/cabo-de-santo-agostinho)
 - [Automação de processos para empresas em Jaboatão dos Guararapes](https://sgengenharias.com/automacao-empresas/jaboatao-dos-guararapes)

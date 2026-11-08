@@ -509,6 +509,7 @@ export const SEGMENTOS: Segmento[] = [
 export type Cidade = { slug: string; nome: string; uf: string; estado: string };
 
 export const CIDADES: Cidade[] = [
+  { slug: 'sao-paulo', nome: 'São Paulo', uf: 'SP', estado: 'São Paulo' },
   { slug: 'recife', nome: 'Recife', uf: 'PE', estado: 'Pernambuco' },
   { slug: 'cabo-de-santo-agostinho', nome: 'Cabo de Santo Agostinho', uf: 'PE', estado: 'Pernambuco' },
   { slug: 'jaboatao-dos-guararapes', nome: 'Jaboatão dos Guararapes', uf: 'PE', estado: 'Pernambuco' },
@@ -522,7 +523,7 @@ export const FAQ: { p: string; r: string }[] = [
   { p: 'Para que tipo de empresa a automação serve?',
     r: 'Para empresas de qualquer porte que repetem tarefas todos os dias. A SG automatiza os sistemas de mais de 500 tipos de empresas e processos, como anfitriões de Airbnb, receptivos e passeios, DJs e bandas, produtoras de vídeo, BPO financeiro, auditorias, call centers, leiloeiros, holdings familiares, revendas de software, prefeituras e associações de moradores. Também temos soluções prontas para consórcios, imobiliárias, clínicas, engenharia e obras, lojas virtuais, restaurantes, escritórios jurídicos, contabilidade e escolas, e fazemos sob medida para outros ramos.' },
   { p: 'Onde a SG Engenharias atende?',
-    r: 'Atendemos empresas de todo o Brasil e do exterior. A implantação é feita pelo WhatsApp e por videochamada, e quem preferir pode ser atendido presencialmente na nossa sala no Novo Mundo Empresarial, no Cabo de Santo Agostinho.' },
+    r: 'Atendemos empresas de todo o Brasil, como São Paulo, Pernambuco e Paraíba, e também do exterior. A implantação é feita pelo WhatsApp e por videochamada, e quem preferir pode ser atendido presencialmente na nossa sala no Novo Mundo Empresarial, no Cabo de Santo Agostinho.' },
   { p: 'Dá para automatizar o WhatsApp da empresa?',
     r: 'Sim. O WhatsApp pode responder perguntas frequentes, fazer o primeiro atendimento, agendar, enviar lembretes e cobranças e passar a conversa para a pessoa certa da equipe. Também é possível usar um único número para mais de um negócio, separando as mensagens de cada um.' },
   { p: 'Quanto custa uma automação?',
