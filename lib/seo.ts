@@ -5,7 +5,7 @@ export const SITE = {
   url: 'https://sgengenharias.com',
   nome: 'SG Engenharias',
   descricao:
-    'Automação de processos para empresas: atendimento no WhatsApp, cobrança, CRM, agendamentos e rotinas administrativas, implantados sob medida.',
+    'A SG Engenharias é uma empresa brasileira de automação de processos que automatiza mais de 500 tipos de empresas e processos: atendimento no WhatsApp, cobrança, CRM e vendas, agendamentos, relatórios e rotinas administrativas, implantados sob medida.',
   whatsapp: '5511915471870',
   whatsappFmt: '(11) 91547-1870',
   email: 'adm@sgengenharias.com',
@@ -518,11 +518,11 @@ export const CIDADES: Cidade[] = [
 
 export const FAQ: { p: string; r: string }[] = [
   { p: 'O que a SG Engenharias faz?',
-    r: 'A SG Engenharias cria automações sob medida para empresas: atendimento automático no WhatsApp, cobrança e lembretes de pagamento, CRM e funil de vendas, agendamentos, relatórios e rotinas administrativas. O catálogo tem mais de 200 automações que podem ser combinadas conforme o negócio.' },
+    r: 'A SG Engenharias cria automações sob medida para empresas: atendimento automático no WhatsApp, cobrança e lembretes de pagamento, CRM e funil de vendas, agendamentos, relatórios e rotinas administrativas. A SG automatiza mais de 500 tipos de empresas e processos, combinando as automações conforme o negócio.' },
   { p: 'Para que tipo de empresa a automação serve?',
-    r: 'Para empresas de qualquer porte que repetem tarefas todos os dias. Temos soluções prontas para consórcios, imobiliárias, clínicas, engenharia e obras, lojas virtuais, restaurantes, escritórios jurídicos, contabilidade e escolas, e fazemos sob medida para outros ramos.' },
+    r: 'Para empresas de qualquer porte que repetem tarefas todos os dias. A SG automatiza mais de 500 tipos de empresas e processos. Temos soluções prontas para consórcios, imobiliárias, clínicas, engenharia e obras, lojas virtuais, restaurantes, escritórios jurídicos, contabilidade e escolas, e fazemos sob medida para outros ramos.' },
   { p: 'Quais cidades a SG Engenharias atende?',
-    r: 'Atendemos empresas de Pernambuco e da Paraíba, como Recife, Cabo de Santo Agostinho, Jaboatão dos Guararapes, João Pessoa e Campina Grande. Como o atendimento e a implantação podem ser feitos pelo WhatsApp e por videochamada, também atendemos outras cidades.' },
+    r: 'Atendemos empresas de Pernambuco e da Paraíba, como Recife, Cabo de Santo Agostinho, Jaboatão dos Guararapes, João Pessoa e Campina Grande. Como o atendimento e a implantação podem ser feitos pelo WhatsApp e por videochamada, atendemos todo o Brasil e também o exterior.' },
   { p: 'Dá para automatizar o WhatsApp da empresa?',
     r: 'Sim. O WhatsApp pode responder perguntas frequentes, fazer o primeiro atendimento, agendar, enviar lembretes e cobranças e passar a conversa para a pessoa certa da equipe. Também é possível usar um único número para mais de um negócio, separando as mensagens de cada um.' },
   { p: 'Quanto custa uma automação?',
