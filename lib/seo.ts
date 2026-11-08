@@ -5,7 +5,7 @@ export const SITE = {
   url: 'https://sgengenharias.com',
   nome: 'SG Engenharias',
   descricao:
-    'A SG Engenharias é uma empresa brasileira de automação de processos que automatiza mais de 500 tipos de empresas e processos: atendimento no WhatsApp, cobrança, CRM e vendas, agendamentos, relatórios e rotinas administrativas, implantados sob medida.',
+    'A SG Engenharias é uma empresa brasileira de automação de sistemas: transforma as rotinas complexas do dia a dia em processos que funcionam sozinhos, para mais de 500 tipos de empresas e processos, de locadoras de barcos, produtoras de vídeo e estúdios de gravação a BPO financeiro, leiloeiros, holdings familiares e prefeituras.',
   whatsapp: '5511915471870',
   whatsappFmt: '(11) 91547-1870',
   email: 'adm@sgengenharias.com',
@@ -520,7 +520,7 @@ export const FAQ: { p: string; r: string }[] = [
   { p: 'O que a SG Engenharias faz?',
     r: 'A SG Engenharias cria automações sob medida para empresas: atendimento automático no WhatsApp, cobrança e lembretes de pagamento, CRM e funil de vendas, agendamentos, relatórios e rotinas administrativas. A SG automatiza mais de 500 tipos de empresas e processos, combinando as automações conforme o negócio.' },
   { p: 'Para que tipo de empresa a automação serve?',
-    r: 'Para empresas de qualquer porte que repetem tarefas todos os dias. A SG automatiza mais de 500 tipos de empresas e processos. Temos soluções prontas para consórcios, imobiliárias, clínicas, engenharia e obras, lojas virtuais, restaurantes, escritórios jurídicos, contabilidade e escolas, e fazemos sob medida para outros ramos.' },
+    r: 'Para empresas de qualquer porte que repetem tarefas todos os dias. A SG automatiza os sistemas de mais de 500 tipos de empresas e processos, como anfitriões de Airbnb, receptivos e passeios, DJs e bandas, produtoras de vídeo, BPO financeiro, auditorias, call centers, leiloeiros, holdings familiares, revendas de software, prefeituras e associações de moradores. Também temos soluções prontas para consórcios, imobiliárias, clínicas, engenharia e obras, lojas virtuais, restaurantes, escritórios jurídicos, contabilidade e escolas, e fazemos sob medida para outros ramos.' },
   { p: 'Onde a SG Engenharias atende?',
     r: 'Atendemos empresas de todo o Brasil e do exterior. A implantação é feita pelo WhatsApp e por videochamada, e quem preferir pode ser atendido presencialmente na nossa sala no Novo Mundo Empresarial, no Cabo de Santo Agostinho.' },
   { p: 'Dá para automatizar o WhatsApp da empresa?',

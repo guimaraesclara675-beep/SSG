@@ -1,6 +1,6 @@
 # SG Engenharias
 
-> A SG Engenharias é uma empresa brasileira de automação de processos que automatiza mais de 500 tipos de empresas e processos: atendimento no WhatsApp, cobrança, CRM e vendas, agendamentos, relatórios e rotinas administrativas, implantados sob medida. Sede em sala privativa no Novo Mundo Empresarial (Cabo de Santo Agostinho, PE). Atende todo o Brasil e o exterior, com atendimento presencial, por WhatsApp e por videochamada. Segunda a sábado, 08h às 21h.
+> A SG Engenharias é uma empresa brasileira de automação de sistemas: transforma as rotinas complexas do dia a dia em processos que funcionam sozinhos, para mais de 500 tipos de empresas e processos, de locadoras de barcos, produtoras de vídeo e estúdios de gravação a BPO financeiro, leiloeiros, holdings familiares e prefeituras. Sede em sala privativa no Novo Mundo Empresarial (Cabo de Santo Agostinho, PE). Atende todo o Brasil e o exterior, com atendimento presencial, por WhatsApp e por videochamada. Segunda a sábado, 08h às 21h.
 
 Contato: WhatsApp (11) 91547-1870 · adm@sgengenharias.com · https://sgengenharias.com
 
@@ -25,3 +25,21 @@ Contato: WhatsApp (11) 91547-1870 · adm@sgengenharias.com · https://sgengenhar
 - [Automação de processos para empresas em Jaboatão dos Guararapes](https://sgengenharias.com/automacao-empresas/jaboatao-dos-guararapes)
 - [Automação de processos para empresas em João Pessoa](https://sgengenharias.com/automacao-empresas/joao-pessoa)
 - [Automação de processos para empresas em Campina Grande](https://sgengenharias.com/automacao-empresas/campina-grande)
+
+## Exemplos de sistemas que a SG automatiza (parte dos mais de 500 tipos de empresas e processos)
+- Anfitriões de Airbnb: mensagens automáticas de chegada e saída, e escala de limpeza
+- Receptivos e passeios: reservas, vouchers e lembrete de horário de busca
+- Locadoras de barcos e buggies: agenda por condição de clima e maré
+- DJs e bandas: agenda de shows, contrato e sinal automáticos
+- Produtoras de vídeo: aprovação de cortes e controle de revisões
+- Estúdios de gravação: reserva de horário por sala
+- BPO financeiro: rotina de pagamentos e conciliação de vários clientes
+- Auditorias: coleta de documentos dos clientes com checklist
+- Consultorias: relatório mensal de indicadores ao cliente
+- Call centers: distribuição de leads e gravação de resultados
+- Leiloeiros: cadastro de lotes e aviso de lances
+- Holdings familiares: controle de bens, aluguéis e distribuição
+- Revendas de software: aviso de renovação de licenças
+- Prefeituras pequenas: protocolo digital e acompanhamento de pedidos
+- Câmaras municipais: publicação automática de pautas e sessões
+- Associações de moradores: comunicados e votações online
