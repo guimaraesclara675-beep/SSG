@@ -1147,10 +1147,11 @@ const CATS=[
 const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const CX_LBL={1:'Baixa',2:'Média',3:'Alta'};
-const INV={1:[1.5,5],2:[5,15],3:[15,40]};
+const INV={1:[0.397,0.997],2:[0.997,2.497],3:[2.497,6]};
+const MENS={1:97,2:197,3:397};
 const PRAZO={1:'1–2 sem.',2:'3–5 sem.',3:'6–10 sem.'};
 const PRAZO_W={1:[1,2],2:[3,5],3:[6,10]};
-const fmtK=n=>'R$ '+(n%1?n.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}):n.toLocaleString('pt-BR'))+' mil';
+const fmtK=n=>'R$ '+Math.round(n*1000).toLocaleString('pt-BR');
 const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 
 const SOL=[];
@@ -1218,7 +1219,7 @@ const FILTERS=[
  {k:'freq',l:'Frequência da tarefa',o:['Diária','Semanal','Mensal','Por evento']},
  {k:'vol',l:'Volume de operações',o:['Baixo','Médio','Alto']},
  {k:'cx',l:'Complexidade',o:['Baixa','Média','Alta']},
- {k:'inv',l:'Faixa de investimento',o:['Até R$ 5 mil','Até R$ 15 mil','Acima de R$ 15 mil']},
+ {k:'inv',l:'Faixa de investimento',o:['Essencial (R$ 397 + R$ 97/mês)','Profissional (R$ 997 + R$ 197/mês)','Avançado (a partir de R$ 2.497)']},
  {k:'ai',l:'Inteligência artificial',o:['Com IA','Sem IA']},
  {k:'prazo',l:'Prazo desejado',o:['Até 2 semanas','Até 5 semanas','Até 10 semanas']}
 ];
@@ -1241,9 +1242,9 @@ function passes(s){
   if(f.vol==='Baixo'&&s.cx>2)return false;
   if(f.vol==='Alto'&&s.cx<2)return false;
   if(f.cx&&CX_LBL[s.cx]!==f.cx)return false;
-  if(f.inv==='Até R$ 5 mil'&&s.cx>1)return false;
-  if(f.inv==='Até R$ 15 mil'&&s.cx>2)return false;
-  if(f.inv==='Acima de R$ 15 mil'&&s.cx<3)return false;
+  if(f.inv==='Essencial (R$ 397 + R$ 97/mês)'&&s.cx!==1)return false;
+  if(f.inv==='Profissional (R$ 997 + R$ 197/mês)'&&s.cx!==2)return false;
+  if(f.inv==='Avançado (a partir de R$ 2.497)'&&s.cx<3)return false;
   if(f.ai==='Com IA'&&!s.ai)return false;
   if(f.ai==='Sem IA'&&s.ai)return false;
   if(f.prazo==='Até 2 semanas'&&s.cx>1)return false;
@@ -1291,7 +1292,7 @@ function cardHTML(s){
   <p>${esc(s.desc)}</p>
   <dl class="meta">
     <div><dt>Complexidade</dt><dd><span class="bars c${s.cx}"><i></i><i></i><i></i></span>${CX_LBL[s.cx]}</dd></div>
-    <div><dt>Investimento</dt><dd>${INV[s.cx][0].toLocaleString('pt-BR')}–${INV[s.cx][1]} mil</dd></div>
+    <div><dt>Investimento</dt><dd>${s.cx===3?'a partir de ':''}${fmtK(INV[s.cx][0])} + R$ ${MENS[s.cx]}/mês</dd></div>
     <div><dt>Prazo</dt><dd>${PRAZO[s.cx]}</dd></div>
   </dl>
   <div class="card-actions"><button class="btn btn-line" data-act="demo">Ver demonstração</button><button class="btn btn-add" data-act="add">${sel?'✓ Selecionada':'+ Adicionar'}</button></div>
@@ -1357,7 +1358,7 @@ function summary(ids){
   const maxW=Math.max(0,...sols.map(s=>PRAZO_W[s.cx][1]));
   const minW=Math.max(0,...sols.map(s=>PRAZO_W[s.cx][0]));
   const extra=Math.ceil(Math.max(0,sols.length-1)/2);
-  return {sols,lo:Math.round(lo*2)/2,hi:Math.round(hi),cx,weeks:`${minW+extra}–${maxW+extra*2} semanas`};
+  return {sols,lo:Math.round(lo*1000)/1000,hi:Math.round(hi*1000)/1000,mes:Math.max(0,...sols.map(s=>MENS[s.cx]))+Math.max(0,sols.length-1)*50,cx,weeks:`${minW+extra}–${maxW+extra*2} semanas`};
 }
 function renderDrawer(){
   const body=$('#drBody');
@@ -1365,7 +1366,7 @@ function renderDrawer(){
     body.innerHTML=`<div class="empty"><h3>Nenhuma automação selecionada</h3><p>Use “+ Adicionar” nos cards ou descreva o problema na busca. Aqui você combina os módulos e pede o orçamento.</p></div><div class="dr-sec"><h3>Começar por</h3>${['D-09','A-04','C-08','B-04'].map(id=>recHTML(BYID[id])).join('')}</div>`;
   } else {
     const sm=summary(state.sel);
-    body.innerHTML=`<dl class="dr-sum" style="margin:0"><div><dt>Módulos</dt><dd>${state.sel.length}</dd></div><div><dt>Complexidade</dt><dd>${sm.cx}</dd></div><div><dt>Faixa prelim.</dt><dd>${fmtK(sm.lo)}–${sm.hi}</dd></div></dl>
+    body.innerHTML=`<dl class="dr-sum" style="margin:0"><div><dt>Módulos</dt><dd>${state.sel.length}</dd></div><div><dt>Complexidade</dt><dd>${sm.cx}</dd></div><div><dt>Faixa prelim.</dt><dd>${fmtK(sm.lo)} – ${fmtK(sm.hi)} + R$ ${sm.mes}/mês</dd></div></dl>
     <div class="dr-sec"><h3>Selecionadas</h3>${state.sel.map(id=>{const s=BYID[id];return `<div class="sel-item"><span class="mono">${s.id}</span><div><b>${esc(s.name)}</b><small>${esc(s.cat.name)} · ${CX_LBL[s.cx]}</small></div><button class="rm" data-rm="${s.id}" aria-label="Remover ${esc(s.name)}">Remover</button></div>`}).join('')}</div>
     ${recommendations().length?`<div class="dr-sec"><h3>Combinam com a sua seleção</h3>${recommendations().map(recHTML).join('')}</div>`:''}
     ${state.views.length?`<p class="fine">Você abriu ${state.views.length} demonstraç${state.views.length===1?'ão':'ões'}. Elas vão junto no pedido de orçamento para a equipe entender o seu interesse.</p>`:''}`;
@@ -1843,7 +1844,7 @@ ${integ.map(x=>'- '+x+' (ativada com as credenciais da empresa)').join('\n')}
 
 Complexidade estimada: ${sm.cx}
 Prazo estimado: ${sm.weeks}
-Faixa preliminar: ${fmtK(sm.lo)} a ${fmtK(sm.hi)}
+Faixa preliminar: ${fmtK(sm.lo)} a ${fmtK(sm.hi)} de implantação + mensalidade a partir de R$ ${sm.mes}
 
 Próximos passos
 1. Reunião de briefing (45 min)
@@ -1854,7 +1855,7 @@ Valores preliminares, sujeitos ao briefing.`;
   openModal(`
   <div class="mhead"><div class="row"><span class="badge b-sim">GERADO AUTOMATICAMENTE</span><span>${sm.sols.length} módulos</span></div><h2>${esc(pname)}</h2><p>${esc(resumo)}</p></div>
   <div class="mbody">
-    <dl class="dr-sum" style="margin:0;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))"><div><dt>Complexidade</dt><dd>${sm.cx}</dd></div><div><dt>Prazo estimado</dt><dd>${sm.weeks}</dd></div><div><dt>Faixa preliminar</dt><dd>${fmtK(sm.lo)} – ${fmtK(sm.hi)}</dd></div><div><dt>Integrações</dt><dd>${integ.length}</dd></div></dl>
+    <dl class="dr-sum" style="margin:0;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))"><div><dt>Complexidade</dt><dd>${sm.cx}</dd></div><div><dt>Prazo estimado</dt><dd>${sm.weeks}</dd></div><div><dt>Faixa preliminar</dt><dd>${fmtK(sm.lo)} – ${fmtK(sm.hi)} + R$ ${sm.mes}/mês</dd></div><div><dt>Integrações</dt><dd>${integ.length}</dd></div></dl>
     <div class="box"><h4>Mapa do fluxo</h4><div class="flow-map">${cats.map((c,i)=>`${i?'<span class="arrow">→</span>':''}<div class="node"><b>${c.id}</b>${esc(c.name)}<br><span class="fine">${sm.sols.filter(s=>s.cat.id===c.id).map(s=>esc(s.name)).join(' · ')}</span></div>`).join('')}</div></div>
     <div class="cols">
       <div class="box"><h4>Funcionalidades selecionadas</h4><ul>${sm.sols.map(s=>`<li><b>${esc(s.name)}</b> · ${esc(s.desc)}</li>`).join('')}</ul></div>
@@ -1903,7 +1904,7 @@ async function sendQuote(){
   let saved=false;if(DB){try{await DB.collection('leads').doc(proto).set(lead);saved=true}catch(e){}}
   if(window.SG_REAL){try{const r=await fetch('/api/leads',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({protocolo:proto,nome:lead.nome,empresa:lead.empresa,email:lead.email,whatsapp:lead.whats,segmento:lead.seg,porte:lead.porte,descricao:(lead.visual?'[Quer melhorar também o visual: marca, site e redes] ':'')+(lead.desc||''),modulos:lead.modulos,demos:lead.demos,consentimento:true})});saved=r.ok}catch(e){}}
   const sm=state.sel.length?summary(state.sel):null;
-  const msg=`Olá, SG Engenharias! Quero um orçamento.\n\nProtocolo: ${proto}\nNome: ${lead.nome}\nEmpresa: ${lead.empresa}\nE-mail: ${lead.email}${lead.whats?`\nWhatsApp: ${lead.whats}`:''}${lead.seg?`\nSegmento: ${lead.seg}`:''}${lead.porte?`\nPorte: ${lead.porte}`:''}${lead.visual?'\n\nQuero melhorar também o visual da empresa (marca, site e redes sociais), junto com os processos, tudo personalizado.':''}${lead.modulos.length?`\n\nMódulos escolhidos:\n${lead.modulos.map(id=>`• ${id} ${BYID[id].name}`).join('\n')}`:''}${sm?`\n\nFaixa preliminar vista no site: ${fmtK(sm.lo)} a ${fmtK(sm.hi)}`:''}${lead.demos.length?`\nDemonstrações que vi: ${lead.demos.join(', ')}`:''}${lead.desc?`\n\nO que preciso: ${lead.desc}`:''}`;
+  const msg=`Olá, SG Engenharias! Quero um orçamento.\n\nProtocolo: ${proto}\nNome: ${lead.nome}\nEmpresa: ${lead.empresa}\nE-mail: ${lead.email}${lead.whats?`\nWhatsApp: ${lead.whats}`:''}${lead.seg?`\nSegmento: ${lead.seg}`:''}${lead.porte?`\nPorte: ${lead.porte}`:''}${lead.visual?'\n\nQuero melhorar também o visual da empresa (marca, site e redes sociais), junto com os processos, tudo personalizado.':''}${lead.modulos.length?`\n\nMódulos escolhidos:\n${lead.modulos.map(id=>`• ${id} ${BYID[id].name}`).join('\n')}`:''}${sm?`\n\nFaixa preliminar vista no site: ${fmtK(sm.lo)} a ${fmtK(sm.hi)} + R$ ${sm.mes}/mês`:''}${lead.demos.length?`\nDemonstrações que vi: ${lead.demos.join(', ')}`:''}${lead.desc?`\n\nO que preciso: ${lead.desc}`:''}`;
   openModal(`<div class="mhead"><div class="row"><span class="badge b-ok">${saved?'PEDIDO REGISTRADO':'ÚLTIMO PASSO'}</span><span class="mono">${proto}</span></div><h2>${saved?'Obrigado, ':'Quase lá, '}${esc(lead.nome.split(' ')[0])}.</h2><p>${saved?'Seu pedido já chegou para a equipe. Para agilizar o contato, envie também pelo WhatsApp: a mensagem já vai pronta.':'Toque no botão abaixo para enviar o pedido pelo WhatsApp da SG Engenharias. A mensagem já vai pronta, com os módulos que você escolheu.'}</p></div>
   <div class="mbody">
     <a class="btn btn-wa big" target="_blank" rel="noopener" href="${waLink(msg)}">Enviar pedido no WhatsApp</a>
@@ -2049,12 +2050,12 @@ const KITS=[
  {id:'imob',n:'Kit Imobiliária Completa',for:'Para imobiliárias e corretores',ids:['H-03','H-04','H-05','H-06','H-07'],out:'Visitas, propostas, contratos, aluguel e repasses no automático.'},
  {id:'clinica',n:'Kit Clínica sem Faltas',for:'Para clínicas e consultórios',ids:['K-01','K-02','K-03','K-06'],out:'Agenda online, confirmação, ficha antes da chegada e lembrete de retorno.'}
 ];
-function kitPrice(k){const sm=summary(k.ids);return {lo:Math.round(sm.lo*0.9*2)/2,hi:Math.round(sm.hi*0.9),weeks:sm.weeks,cx:sm.cx}}
+function kitPrice(k){const sm=summary(k.ids);return {lo:Math.round(sm.lo*900)/1000,hi:Math.round(sm.hi*900)/1000,mes:sm.mes,weeks:sm.weeks,cx:sm.cx}}
 function renderKits(){
   $('#kits').innerHTML=KITS.map(k=>{const p=kitPrice(k);const all=k.ids.every(id=>state.sel.includes(id));return `<article class="kit${k.destaque?' destaque':''}" data-kit="${k.id}">
     ${k.destaque?'<span class="kit-tag">MAIS COMPLETO · PERSONALIZADO</span>':''}<div class="kit-for">${esc(k.for)}</div><h3>${esc(k.n)}</h3><p>${esc(k.out)}</p>
     <ul>${k.ids.map(id=>`<li><span class="mono">${id}</span>${esc(BYID[id].name)}</li>`).join('')}</ul>
-    <dl class="meta"><div><dt>Módulos</dt><dd>${k.ids.length}</dd></div><div><dt>A partir de</dt><dd>${fmtK(p.lo)}</dd></div><div><dt>Prazo</dt><dd>${p.weeks.replace(' semanas',' sem.')}</dd></div></dl>
+    <dl class="meta"><div><dt>Módulos</dt><dd>${k.ids.length}</dd></div><div><dt>A partir de</dt><dd>${fmtK(p.lo)} + R$ ${p.mes}/mês</dd></div><div><dt>Prazo</dt><dd>${p.weeks.replace(' semanas',' sem.')}</dd></div></dl>
     <div class="card-actions"><button class="btn btn-line" data-kd="${k.ids[0]}">Ver demonstração</button><button class="btn ${all?'btn-add':'btn-primary'}" data-ka="${k.id}">${all?'✓ Na seleção':'Adicionar kit'}</button></div>
     <a class="kit-wa" target="_blank" rel="noopener" href="${waLink(`Olá, SG Engenharias! Tenho interesse no ${k.n}.\n\n${k.ids.map(id=>`• ${id} ${BYID[id].name}`).join('\n')}`)}">Pedir este kit pelo WhatsApp</a>
   </article>`}).join('');

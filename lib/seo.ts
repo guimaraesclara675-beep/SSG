@@ -527,7 +527,7 @@ export const FAQ: { p: string; r: string }[] = [
   { p: 'Dá para automatizar o WhatsApp da empresa?',
     r: 'Sim. O WhatsApp pode responder perguntas frequentes, fazer o primeiro atendimento, agendar, enviar lembretes e cobranças e passar a conversa para a pessoa certa da equipe. Também é possível usar um único número para mais de um negócio, separando as mensagens de cada um.' },
   { p: 'Quanto custa uma automação?',
-    r: 'Cada automação do catálogo mostra uma faixa de investimento. O valor final depende do que será combinado e das integrações necessárias, e sai depois de uma conversa rápida sobre a rotina da empresa. O pedido de orçamento pelo site ou pelo WhatsApp é gratuito.' },
+    r: 'Os planos começam em R$ 397 de implantação e R$ 97 por mês (Essencial, uma automação simples). O Profissional, com até 3 automações, sai por R$ 997 e R$ 197 por mês, e processos mais densos, como lances automáticos e estudo de grupos de consórcio, ficam a partir de R$ 2.497 e R$ 397 por mês. Cada automação do catálogo mostra uma faixa de investimento. O valor final depende do que será combinado e das integrações necessárias, e sai depois de uma conversa rápida sobre a rotina da empresa. O pedido de orçamento pelo site ou pelo WhatsApp é gratuito.' },
   { p: 'Quanto tempo leva para implantar?',
     r: 'Automações simples, como lembretes e respostas automáticas, costumam ficar prontas em poucos dias. Projetos com várias integrações levam mais tempo; o prazo é combinado no orçamento e o cliente acompanha cada etapa pela área do cliente.' },
   { p: 'Os dados da minha empresa ficam seguros?',
